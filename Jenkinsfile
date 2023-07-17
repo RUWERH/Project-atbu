@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage("Build") {
+        stage("Build Stage") {
             environment {
                 DB_HOST = credentials("127.0.0.1")
                 DB_DATABASE = credentials("myproject")
