@@ -7,10 +7,9 @@ pipeline {
                 sh 'composer install'
                 sh 'composer --version'
                 sh 'cp .env.example .env'
-                sh 'echo DB_HOST=${DB_HOST} >> .env'
                 sh 'php artisan key:generate'
                 sh 'cp .env .env.testing'
-                sh 'php artisan migrate'
+                
             }
         }
         stage("Unit test") {
