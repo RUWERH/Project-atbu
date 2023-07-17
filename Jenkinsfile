@@ -2,21 +2,12 @@ pipeline {
     agent any
     stages {
         stage("Build Stage") {
-            environment {
-                DB_HOST = credentials("127.0.0.1")
-                DB_DATABASE = credentials("myproject")
-                DB_USERNAME = credentials("atbu-project")
-                DB_PASSWORD = credentials("atbu-project")
-            }
             steps {
                 sh 'php --version'
                 sh 'composer install'
                 sh 'composer --version'
                 sh 'cp .env.example .env'
                 sh 'echo DB_HOST=${DB_HOST} >> .env'
-                sh 'echo DB_USERNAME=${DB_USERNAME} >> .env'
-                sh 'echo DB_DATABASE=${DB_DATABASE} >> .env'
-                sh 'echo DB_PASSWORD=${DB_PASSWORD} >> .env'
                 sh 'php artisan key:generate'
                 sh 'cp .env .env.testing'
                 sh 'php artisan migrate'
