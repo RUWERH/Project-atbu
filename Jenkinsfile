@@ -38,12 +38,8 @@ pipeline {
             }
         }
         stage("Docker push") {
-            environment {
-                DOCKER_USERNAME = credentials("ruwerh")
-                DOCKER_PASSWORD = credentials("Codedx.100")
-            }
             steps {
-                sh "docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
+                sh "docker login --username ruwerh --password Codedx.100
                 sh "docker push ruwerh/atbu-project"
             }
         }
